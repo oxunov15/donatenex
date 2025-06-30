@@ -2,10 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>DonateNex | Futuristic Donation Platform</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Temporary inline CSS for critical mobile fixes */
+    @media (max-width: 480px) {
+      header {
+        padding: 12px 5% !important;
+        position: sticky;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+      }
+      .logo img {
+        height: 30px !important;
+      }
+      .hero {
+        padding-top: 80px !important;
+      }
+      .hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+      }
+      .hero p {
+        font-size: 1rem !important;
+      }
+      .cta-button {
+        padding: 12px 30px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Custom Cursor -->
@@ -18,24 +46,26 @@
     </div>
     <nav>
       <div class="language-selector">
-        <button id="lang-btn">UZ</button>
+        <button id="lang-btn" aria-label="Language selector">UZ</button>
         <ul class="lang-dropdown">
-          <li><img src="assets/uz.svg" alt="UZ"> UZ</li>
-          <li><img src="assets/ru.svg" alt="RU"> RU</li>
-          <li><img src="assets/kz.svg" alt="KZ"> KZ</li>
-          <li><img src="assets/kg.svg" alt="KG"> KG</li>
-          <li><img src="assets/tj.svg" alt="TJ"> TJ</li>
+          <li><img src="assets/uz.svg" alt="UZ" loading="lazy"> UZ</li>
+          <li><img src="assets/ru.svg" alt="RU" loading="lazy"> RU</li>
+          <li><img src="assets/kz.svg" alt="KZ" loading="lazy"> KZ</li>
+          <li><img src="assets/kg.svg" alt="KG" loading="lazy"> KG</li>
+          <li><img src="assets/tj.svg" alt="TJ" loading="lazy"> TJ</li>
         </ul>
       </div>
-      <button class="login-btn">Login</button>
+      <button class="login-btn" aria-label="Login">Login</button>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Empower the Future</h1>
-    <p>Donate seamlessly with blockchain-powered transparency.</p>
-    <button class="cta-button">Donate Now</button>
+    <div class="hero-content">
+      <h1>Empower the Future</h1>
+      <p>Donate seamlessly with blockchain-powered transparency.</p>
+      <button class="cta-button" aria-label="Donate now">Donate Now</button>
+    </div>
   </section>
 
   <script src="script.js"></script>
