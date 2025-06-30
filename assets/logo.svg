@@ -4,9 +4,24 @@
       <stop offset="0%" stop-color="#00F5FF" />
       <stop offset="100%" stop-color="#0066FF" />
     </linearGradient>
+    <clipPath id="cutout">
+      <rect x="0" y="0" width="200" height="200" rx="10" />
+    </clipPath>
   </defs>
   
-  <!-- Abstract Nexus (Heart + Lightning Hybrid) -->
-  <path fill="url(#gradient)" d="M100,40 L120,60 L160,50 L130,90 L150,130 L100,110 L50,130 L70,90 L40,50 L80,60 Z" 
-        opacity="0.9" stroke="#0066FF" stroke-width="2" />
+  <!-- Premium DN Monogram -->
+  <g clip-path="url(#cutout)">
+    <!-- D (Geometric) -->
+    <path fill="none" stroke="url(#gradient)" stroke-width="12" stroke-linecap="round"
+          d="M50,50 C80,30 120,30 150,50 L150,150 C120,170 80,170 50,150 Z" />
+    
+    <!-- N (Negative Space) -->
+    <path fill="none" stroke="url(#gradient)" stroke-width="12" stroke-linejoin="bevel"
+          d="M150,50 L110,150 M110,50 L150,150" />
+    
+    <!-- Premium Badge (Optional) -->
+    <circle cx="180" cy="180" r="15" fill="#FFD700" stroke="#0066FF" stroke-width="2">
+      <animate attributeName="r" values="15;17;15" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
 </svg>
