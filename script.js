@@ -1,46 +1,101 @@
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
+document.addEventListener('DOMContentLoaded', () => {
+  // Language Selection System
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.querySelector('.lang-dropdown');
+  const langItems = document.querySelectorAll('.lang-dropdown li');
+  
+  // Set initial language from localStorage or default
+  const currentLang = localStorage.getItem('selectedLang') || 'uz';
+  updateLanguageDisplay(currentLang);
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-
-// Cursor Hover Effects
-const hoverElements = document.querySelectorAll('button, a, .lang-dropdown li');
-
-hoverElements.forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('active');
+  // Language dropdown toggle
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langDropdown.classList.toggle('show');
   });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('active');
+
+  // Language selection
+  langItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const selectedLang = item.dataset.lang;
+      localStorage.setItem('selectedLang', selectedLang);
+      updateLanguageDisplay(selectedLang);
+      langDropdown.classList.remove('show');
+      // Add your actual language change logic here
+      console.log(`Language changed to: ${selectedLang}`);
+    });
   });
-});
 
-// Language Dropdown
-const langBtn = document.getElementById('lang-btn');
-const langDropdown = document.querySelector('.lang-dropdown');
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    langDropdown.classList.remove('show');
+  });
 
-langBtn.addEventListener('click', () => {
-  langDropdown.style.display = langDropdown.style.display === 'block' ? 'none' : 'block';
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.language-selector')) {
-    langDropdown.style.display = 'none';
+  function updateLanguageDisplay(lang) {
+    const selectedItem = Array.from(langItems).find(item => item.dataset.lang === lang);
+    if (selectedItem) {
+      langBtn.innerHTML = selectedItem.innerHTML;
+    }
   }
-});
 
-// Glow Animation for Buttons
-const buttons = document.querySelectorAll('button');
+  // Custom Cursor System (desktop only)
+  if (matchMedia('(pointer: fine)').matches) {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor';
+    document.body.appendChild(cursor);
 
-buttons.forEach(button => {
-  button.addEventListener('mouseenter', () => {
-    button.style.boxShadow = `0 0 15px ${button.classList.contains('login-btn') ? '#A020F0' : '#00F5FF'}`;
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    const hoverElements = document.querySelectorAll(
+      'button, a, [role="button"], .lang-dropdown li, input, textarea, select'
+    );
+
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('active');
+        el.style.cursor = 'none';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+      });
+    });
+  }
+
+  // Button Interaction System
+  const buttons = document.querySelectorAll('button:not(.lang-btn)');
+  
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', () => {
+      if (button.classList.contains('login-btn')) {
+        button.style.boxShadow = '0 0 15px var(--neon-violet)';
+      } else {
+        button.style.boxShadow = '0 0 15px var(--neon-blue)';
+      }
+    });
+
+    button.addEventListener('mouseleave', () => {
+      button.style.boxShadow = 'none';
+    });
+
+    button.addEventListener('mousedown', () => {
+      button.style.transform = 'scale(0.95)';
+    });
+
+    button.addEventListener('mouseup', () => {
+      button.style.transform = '';
+    });
   });
-  button.addEventListener('mouseleave', () => {
-    button.style.boxShadow = 'none';
+
+  // Form interaction enhancement
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      input.style.boxShadow = '0 0 10px var(--neon-blue)';
+    });
+    input.addEventListener('blur', () => {
+      input.style.boxShadow = 'none';
+    });
   });
 });
