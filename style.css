@@ -4,7 +4,7 @@
   --neon-violet: #A020F0;
   --pure-white: #FFFFFF;
   --bg-black: #000000;
-  --header-height: 70px;
+  --header-height: 80px; /* Slightly increased for better logo display */
 }
 
 * {
@@ -41,10 +41,42 @@ header {
   backdrop-filter: blur(5px);
 }
 
-.logo img {
-  height: clamp(30px, 4vw, 40px);
+/* Enhanced Logo with Wordmark */
+.logo-combo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  height: clamp(36px, 5vw, 48px); /* Increased size */
+  width: auto;
   filter: drop-shadow(0 0 5px var(--neon-blue));
-  transition: height 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.brand-name {
+  font-family: 'Bai Jamjuree', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects for logo */
+.logo-combo:hover .logo-icon {
+  filter: drop-shadow(0 0 10px var(--neon-blue));
+  transform: scale(1.05);
+}
+
+.logo-combo:hover .brand-name {
+  text-shadow: 0 0 15px rgba(0, 245, 255, 0.7);
 }
 
 nav {
@@ -174,10 +206,22 @@ nav {
     transform: translateY(-3px);
     box-shadow: 0 0 20px var(--neon-blue);
   }
+  
+  .login-btn:hover {
+    box-shadow: 0 0 15px var(--neon-violet);
+  }
 }
 
 /* Mobile/touch optimization */
-@media (pointer: coarse) {
+@media (max-width: 768px) {
+  .logo-combo {
+    gap: 8px;
+  }
+  
+  .brand-name {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+  }
+  
   button, a, [role="button"] {
     min-width: 44px;
     min-height: 44px;
@@ -185,6 +229,6 @@ nav {
   
   .language-selector button,
   .login-btn {
-    padding: 10px 20px;
+    padding: 10px 15px;
   }
 }
