@@ -36,41 +36,48 @@
   </style>
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor"></div>
-
   <!-- Header -->
   <header>
-  <div class="logo">
-    <a href="/" class="logo-combo">
-      <img src="assets/logo.svg" alt="DonateNex" class="logo-icon">
-      <span class="brand-name">DonateNex</span>
-    </a>
-  </div>
+    <div class="logo">
+      <a href="/" class="logo-combo">
+        <img src="assets/logo.svg" alt="DonateNex" class="logo-icon">
+        <span class="brand-name">DonateNex</span>
+      </a>
+    </div>
     <nav>
-    <div class="language-selector">
-  <button id="lang-btn">🇺🇿 UZ</button>
-  <ul class="lang-dropdown">
-    <li data-lang="uz">🇺🇿 UZ</li>
-    <li data-lang="ru">🇷🇺 RU</li>
-    <li data-lang="kz">🇰🇿 KZ</li>
-    <li data-lang="kg">🇰🇬 KZ</li>
-    <li data-lang="tj">🇹🇯 TJ</li>
-  </ul>
-</div>
-      <button class="login-btn" aria-label="Profil">Profil</button>
+      <div class="language-selector">
+        <button id="lang-btn">
+          <span class="flag">🇺🇿</span>
+          <span class="lang-code">UZ</span>
+        </button>
+        <ul class="lang-dropdown">
+          <li data-lang="uz"><span class="flag">🇺🇿</span> O'zbekcha</li>
+          <li data-lang="ru"><span class="flag">🇷🇺</span> Русский</li>
+          <li data-lang="kz"><span class="flag">🇰🇿</span> Қазақша</li>
+          <li data-lang="kg"><span class="flag">🇰🇬</span> Кыргызча</li>
+          <li data-lang="tj"><span class="flag">🇹🇯</span> Тоҷикӣ</li>
+        </ul>
+      </div>
+      <button class="login-btn" data-translate="login">Profil</button>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Barcha sng davlatlardan donat qabul qil.</h1>
-      <p>Rossiya, Qozog‘iston, Qirg‘iziston, O‘zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.</p>
-      <button class="cta-button" aria-label="Boshlash">Boshlash</button>
+    <div class="hero-content" data-translate="hero">
+      <h1 data-key="title">Barcha sng davlatlardan donat qabul qil.</h1>
+      <p data-key="subtitle">Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.</p>
+      <button class="cta-button" data-key="cta">Boshlash</button>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer>
+    <p data-translate="footer">© 2023 DonateNex. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/lang.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
