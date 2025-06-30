@@ -5,6 +5,4 @@
   <!-- Lightning Bolt -->
   <polygon points="120,40 140,40 110,80 130,80 100,120 90,100 110,70 90,70" 
            fill="#00F5FF" />
-  <!-- Text -->
-  <text x="100" y="160" text-anchor="middle" fill="white" font-family="Arial" font-size="20" font-weight="bold">DonateNex</text>
-</svg>
+  </svg>
