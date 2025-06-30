@@ -46,7 +46,7 @@ header {
 
 /* Logo Styles */
 .logo-combo {
-  display: default;
+  display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
