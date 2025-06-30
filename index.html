@@ -1,63 +1,69 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>DonateNex | Futuristic Donation Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DonateNex | Barcha SNG davlatlaridan donatlar</title>
+  <meta name="description" content="Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqarish platformasi">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <!-- Preload -->
+  <link rel="preload" href="assets/logo.svg" as="image">
 </head>
 <body>
   <!-- Header -->
-  <header class="animate__animated animate__fadeInDown">
-    <div class="logo">
-      <div class="logo-combo">
-  <img src="assets/logo.svg" alt="DonateNex" class="logo-icon">
-  <span class="brand-name">DonateNex</span>
-</div>
-    <nav>
+  <header>
+    <a href="/" class="logo-combo" aria-label="DonateNex asosiy sahifasi">
+      <img src="assets/logo.svg" alt="DonateNex logotipi" class="logo-icon" width="48" height="48">
+      <span class="brand-name">DonateNex</span>
+    </a>
+    
+    <nav aria-label="Asosiy navigatsiya">
       <div class="language-selector">
-        <button id="lang-btn">
+        <button id="lang-btn" aria-haspopup="true" aria-expanded="false">
           <span class="flag">🇺🇿</span>
           <span class="lang-code">UZ</span>
+          <span class="visually-hidden">Tilni o'zgartirish</span>
         </button>
-        <ul class="lang-dropdown">
-          <li data-lang="uz"><span class="flag">🇺🇿</span> O'zbekcha</li>
-          <li data-lang="ru"><span class="flag">🇷🇺</span> Русский</li>
-          <li data-lang="kz"><span class="flag">🇰🇿</span> Қазақша</li>
-          <li data-lang="kg"><span class="flag">🇰🇬</span> Кыргызча</li>
-          <li data-lang="tj"><span class="flag">🇹🇯</span> Тоҷикӣ</li>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" data-lang="uz"><span class="flag">🇺🇿</span> O'zbekcha</li>
+          <li role="menuitem" data-lang="ru"><span class="flag">🇷🇺</span> Русский</li>
+          <li role="menuitem" data-lang="kz"><span class="flag">🇰🇿</span> Қазақша</li>
+          <li role="menuitem" data-lang="kg"><span class="flag">🇰🇬</span> Кыргызча</li>
+          <li role="menuitem" data-lang="tj"><span class="flag">🇹🇯</span> Тоҷикӣ</li>
         </ul>
       </div>
-      <button class="login-btn" data-translate="login">Profil</button>
+      <button class="profile-btn" data-translate="login" aria-label="Profil sahifasi">
+        <span class="btn-text">Profil</span>
+      </button>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content" data-translate="hero">
-    <h1 data-key="title">Barcha sng davlatlardan donat qabul qil.</h1>
-    <p data-key="subtitle">Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.</p>
-    <button class="cta-button" data-key="cta">Boshlash</button>
-  </div>
-</section>
-
-  <!-- About Section -->
-  <section class="about-section" data-translate="about">
-    <div class="container">
-      <h2 data-key="title" class="section-title"></h2>
-      <p data-key="text" class="section-text"></p>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main>
+    <section class="hero">
+      <div class="hero-content" data-translate="hero">
+        <h1 data-key="title">Barcha SNG davlatlardan donat qabul qil.</h1>
+        <p data-key="subtitle">Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.</p>
+        <button class="cta-button" data-key="cta">Boshlash</button>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="animate__animated animate__fadeInUp animate__delay-4s">
+  <footer>
     <p data-translate="footer"></p>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/lang.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/lang.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
