@@ -1,207 +1,291 @@
+/**
+ * DonateNex - Barcha SNG davlatlaridan donatlar platformasi
+ * Mukammal JavaScript yechimi
+ * @version 1.0.0
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  // ==================== Language System ====================
-  const langBtn = document.getElementById('lang-btn');
-  const langDropdown = document.querySelector('.lang-dropdown');
-  const langItems = document.querySelectorAll('.lang-dropdown li');
-  const translatableElements = document.querySelectorAll('[data-translate]');
-  const loginBtn = document.querySelector('.login-btn');
+  // =====================
+  // MODUL FUNKSIYALARI
+  // =====================
+  
+  /**
+   * Til o'zgartirish tizimi
+   */
+  const setupLanguageSystem = () => {
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.querySelector('.lang-dropdown');
+    const langItems = document.querySelectorAll('.lang-dropdown li');
+    const translatableElements = document.querySelectorAll('[data-translate]');
+    const loginBtn = document.querySelector('.profile-btn');
 
-  // Language translations
-  const translations = {
-    uz: {
-      hero: {
-        title: "Barcha sng davlatlardan donat qabul qil.",
-        subtitle: "Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.",
-        cta: "Boshlash"
+    // Til tarjimalari
+    const translations = {
+      uz: {
+        hero: {
+          title: "Barcha SNG davlatlardan donat qabul qil.",
+          subtitle: "Rossiya, Qozog'iston, Qirg'iziston, O'zbekiston va Tojikistondan xayriyalarni bir joyda boshqar: oson, tez va xavfsiz.",
+          cta: "Boshlash"
+        },
+        login: "Profil",
+        footer: "© 2023 DonateNex. Barcha huquqlar himoyalangan."
       },
-      login: "Profil",
-      footer: "© 2023 DonateNex. Barcha huquqlar himoyalangan."
-    },
-    ru: {
-      hero: {
-        title: "Принимайте донаты со всех стран СНГ",
-        subtitle: "Управляйте пожертвованиями из России, Казахстана, Кыргызстана, Узбекистана и Таджикистана в одном месте: просто, быстро и безопасно.",
-        cta: "Начать"
+      ru: {
+        hero: {
+          title: "Принимайте донаты со всех стран СНГ",
+          subtitle: "Управляйте пожертвованиями из России, Казахстана, Кыргызстана, Узбекистана и Таджикистана в одном месте: просто, быстро и безопасно.",
+          cta: "Начать"
+        },
+        login: "Профиль",
+        footer: "© 2023 DonateNex. Все права защищены."
       },
-      login: "Профиль",
-      footer: "© 2023 DonateNex. Все права защищены."
-    },
-    kz: {
-      hero: {
-        title: "Барлық ТМД елдерінен донацияларды қабылдаңыз",
-        subtitle: "Ресей, Қазақстан, Қырғызстан, Өзбекстан және Тәжікстаннан қайырымдылықтарды бір жерден басқарыңыз: оңай, жылдам және қауіпсіз.",
-        cta: "Бастау"
+      kz: {
+        hero: {
+          title: "Барлық ТМД елдерінен донацияларды қабылдаңыз",
+          subtitle: "Ресей, Қазақстан, Қырғызстан, Өзбекстан және Тәжікстаннан қайырымдылықтарды бір жерден басқарыңыз: оңай, жылдам және қауіпсіз.",
+          cta: "Бастау"
+        },
+        login: "Профиль",
+        footer: "© 2023 DonateNex. Барлық құқықтар қорғалған."
       },
-      login: "Профиль",
-      footer: "© 2023 DonateNex. Барлық құқықтар қорғалған."
-    },
-    kg: {
-      hero: {
-        title: "Бардык СНГ өлкөлөрүнөн донацияларды кабыл алыңыз",
-        subtitle: "Россия, Казакстан, Кыргызстан, Өзбекстан жана Тажикстандан кайрымдуулуктарды бир жерден башкарыңыз: оңой, тез жана коопсуз.",
-        cta: "Баштоо"
+      kg: {
+        hero: {
+          title: "Бардык СНГ өлкөлөрүнөн донацияларды кабыл алыңыз",
+          subtitle: "Россия, Казакстан, Кыргызстан, Өзбекстан жана Тажикстандан кайрымдуулуктарды бир жерден башкарыңыз: оңой, тез жана коопсуз.",
+          cta: "Баштоо"
+        },
+        login: "Профиль",
+        footer: "© 2023 DonateNex. Бардык укуктар корголгон."
       },
-      login: "Профиль",
-      footer: "© 2023 DonateNex. Бардык укуктар корголгон."
-    },
-    tj: {
-      hero: {
-        title: "Аз ҳамаи давлатҳои ИДМ ҳадя қабул кунед",
-        subtitle: "Аз Русия, Қазоқистон, Қирғизистон, Ӯзбекистон ва Тоҷикистон ҳадяҳоро дар як ҷо идора кунед: осон, зуд ва бехатар.",
-        cta: "Оғоз"
-      },
-      login: "Профил",
-      footer: "© 2023 DonateNex. Ҳамаи ҳуқуқҳо ҳифз шудаанд."
-    }
-  };
+      tj: {
+        hero: {
+          title: "Аз ҳамаи давлатҳои ИДМ ҳадя қабул кунед",
+          subtitle: "Аз Русия, Қазоқистон, Қирғизистон, Ӯзбекистон ва Тоҷикистон ҳадяҳоро дар як ҷо идора кунед: осон, зуд ва бехатар.",
+          cta: "Оғоз"
+        },
+        login: "Профил",
+        footer: "© 2023 DonateNex. Ҳамаи ҳуқуқҳо ҳифз шудаанд."
+      }
+    };
 
-  // Set initial language
-  let currentLang = localStorage.getItem('selectedLang') || 'uz';
-  updateLanguage(currentLang);
-  updateLangButton();
+    // Joriy til
+    let currentLang = localStorage.getItem('selectedLang') || 'uz';
 
-  // Language selection
-  langItems.forEach(item => {
-    item.addEventListener('click', () => {
-      currentLang = item.dataset.lang;
-      localStorage.setItem('selectedLang', currentLang);
-      updateLanguage(currentLang);
-      updateLangButton();
-      langDropdown.classList.remove('show');
-    });
-  });
-
-  // Update page content
-  function updateLanguage(lang) {
-    const data = translations[lang];
-    
-    translatableElements.forEach(element => {
-      const section = element.dataset.translate;
-      if (data[section]) {
-        Object.keys(data[section]).forEach(key => {
-          const target = element.querySelector(`[data-key="${key}"]`);
-          if (target) {
-            target.textContent = data[section][key];
-            // Trigger animation reset
-            if (section === 'hero') {
-              setTimeout(() => {
+    // Sahifa kontentini yangilash
+    const updateContent = () => {
+      const langData = translations[currentLang];
+      
+      translatableElements.forEach(element => {
+        const section = element.dataset.translate;
+        if (langData[section]) {
+          Object.keys(langData[section]).forEach(key => {
+            const target = element.querySelector(`[data-key="${key}"]`);
+            if (target) {
+              target.textContent = langData[section][key];
+              // Animatsiyalarni qayta ishga tushirish
+              if (section === 'hero') {
                 target.style.animation = 'none';
                 void target.offsetWidth;
                 target.style.animation = '';
-              }, 10);
+              }
             }
-          }
-        });
+          });
+        }
+      });
+
+      // Profil tugmasini yangilash
+      if (loginBtn && langData.login) {
+        loginBtn.querySelector('.btn-text').textContent = langData.login;
       }
-    });
+    };
 
-    // Update login button
-    if (data.login && loginBtn) {
-      loginBtn.textContent = data.login;
-    }
-  }
+    // Til tugmasini yangilash
+    const updateLangButton = () => {
+      const selectedItem = Array.from(langItems).find(item => item.dataset.lang === currentLang);
+      if (selectedItem && langBtn) {
+        langBtn.innerHTML = `
+          ${selectedItem.querySelector('.flag').outerHTML}
+          <span class="lang-code">${currentLang.toUpperCase()}</span>
+        `;
+      }
+    };
 
-  // Update language button display
-  function updateLangButton() {
-    const selectedItem = Array.from(langItems).find(item => item.dataset.lang === currentLang);
-    if (selectedItem) {
-      langBtn.innerHTML = selectedItem.innerHTML;
-    }
-  }
+    // Tilni o'zgartirish
+    const changeLanguage = (lang) => {
+      currentLang = lang;
+      localStorage.setItem('selectedLang', lang);
+      updateContent();
+      updateLangButton();
+      closeDropdown();
+    };
 
-  // ==================== UI Interactions ====================
-  // Language dropdown toggle
-  langBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langDropdown.classList.toggle('show');
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.language-selector')) {
+    // Dropdownni yopish
+    const closeDropdown = () => {
       langDropdown.classList.remove('show');
-    }
-  });
+      langBtn.setAttribute('aria-expanded', 'false');
+    };
 
-  // ==================== Custom Cursor ====================
-  if (matchMedia('(pointer: fine)').matches) {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor';
-    document.body.appendChild(cursor);
-
-    // Cursor movement
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-
-    // Cursor hover effects
-    const hoverElements = document.querySelectorAll(
-      'button, a, [role="button"], .lang-dropdown li, input, textarea, select, .cta-button'
-    );
-
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
-        el.style.cursor = 'none';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
+    // Event listenerlar
+    langItems.forEach(item => {
+      item.addEventListener('click', () => changeLanguage(item.dataset.lang));
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          changeLanguage(item.dataset.lang);
+        }
       });
     });
-  }
 
-  // ==================== Button Effects ====================
-  const buttons = document.querySelectorAll('button:not(#lang-btn)');
-  
-  buttons.forEach(button => {
-    // Hover effects
-    button.addEventListener('mouseenter', () => {
-      if (button.classList.contains('login-btn')) {
-        button.style.boxShadow = '0 0 15px var(--neon-violet)';
-      } else {
-        button.style.boxShadow = '0 0 15px var(--neon-blue)';
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = langBtn.getAttribute('aria-expanded') === 'true';
+      langBtn.setAttribute('aria-expanded', String(!isExpanded));
+      langDropdown.classList.toggle('show');
+    });
+
+    // Tashqariga bosganda yopish
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.language-selector')) {
+        closeDropdown();
       }
     });
 
-    button.addEventListener('mouseleave', () => {
-      button.style.boxShadow = 'none';
-    });
+    // Boshlang'ich sozlash
+    updateContent();
+    updateLangButton();
+  };
 
-    // Click effects
-    button.addEventListener('mousedown', () => {
-      button.style.transform = 'scale(0.95)';
-    });
+  /**
+   * Profil tugmasi ishlashi
+   */
+  const setupProfileButton = () => {
+    const profileBtn = document.querySelector('.profile-btn');
+    
+    if (profileBtn) {
+      profileBtn.addEventListener('click', () => {
+        // Bu yerda profil sahifasiga yo'naltirish yoki modal oynani ochish
+        console.log('Profil sahifasiga o\'tish');
+        // window.location.href = '/profile';
+      });
+      
+      // Klaviatura bilan ishlash
+      profileBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          profileBtn.click();
+        }
+      });
+    }
+  };
 
-    button.addEventListener('mouseup', () => {
-      button.style.transform = '';
-    });
+  /**
+   * CTA tugmasi effektlari
+   */
+  const setupCTAButton = () => {
+    const ctaButton = document.querySelector('.cta-button');
+    
+    if (ctaButton) {
+      ctaButton.addEventListener('click', () => {
+        // Bu yerda boshlash logikasi
+        console.log('Platformaga kirish');
+        // window.location.href = '/dashboard';
+      });
+      
+      // Hover effekti
+      ctaButton.addEventListener('mouseenter', () => {
+        ctaButton.style.transform = 'translateY(-3px)';
+      });
+      
+      ctaButton.addEventListener('mouseleave', () => {
+        ctaButton.style.transform = '';
+      });
+    }
+  };
 
-    button.addEventListener('click', () => {
-      button.style.transform = '';
+  /**
+   * Accessibilitiy yaxshilashlari
+   */
+  const improveAccessibility = () => {
+    // Barcha interaktiv elementlar uchun
+    const interactiveElements = document.querySelectorAll(
+      'button, a, [role="button"], [tabindex="0"]'
+    );
+    
+    interactiveElements.forEach(el => {
+      // Klaviatura navigatsiyasi
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+      
+      // Focus holatida stil
+      el.addEventListener('focus', () => {
+        el.style.outline = '2px solid var(--neon-blue)';
+        el.style.outlineOffset = '3px';
+      });
+      
+      el.addEventListener('blur', () => {
+        el.style.outline = 'none';
+      });
     });
-  });
+  };
 
-  // ==================== Form Enhancements ====================
-  const inputs = document.querySelectorAll('input, textarea');
-  inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      input.style.boxShadow = '0 0 10px var(--neon-blue)';
-      input.style.borderColor = 'var(--neon-blue)';
-    });
+  /**
+   * Sayt animatsiyalari
+   */
+  const setupAnimations = () => {
+    // Scroll animatsiyalari
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      
+      elements.forEach(el => {
+        const elementPosition = el.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          el.classList.add('animated');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Boshlang'ich holatni tekshirish
+  };
 
-    input.addEventListener('blur', () => {
-      input.style.boxShadow = 'none';
-      input.style.borderColor = '';
-    });
-  });
-
-  // ==================== Animations ====================
-  function resetHeroAnimations() {
-    const heroElements = document.querySelectorAll('.hero-content h1, .hero-content p, .hero-content .cta-button');
-    heroElements.forEach(el => {
-      el.style.animation = 'none';
-      void el.offsetWidth; // Trigger reflow
-      el.style.animation = '';
-    });
+  // =====================
+  // INITIALIZATION
+  // =====================
+  
+  try {
+    setupLanguageSystem();
+    setupProfileButton();
+    setupCTAButton();
+    improveAccessibility();
+    setupAnimations();
+    
+    // Console log
+    console.log('%cDonateNex platformasi muvaffaqiyatli yuklandi', 
+      'color: #00F5FF; font-size: 14px; font-weight: bold;');
+  } catch (error) {
+    console.error('Xatolik yuz berdi:', error);
+    
+    // Foydalanuvchiga xabar
+    const errorMessage = document.createElement('div');
+    errorMessage.style.position = 'fixed';
+    errorMessage.style.bottom = '20px';
+    errorMessage.style.right = '20px';
+    errorMessage.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+    errorMessage.style.color = 'white';
+    errorMessage.style.padding = '10px 20px';
+    errorMessage.style.borderRadius = '5px';
+    errorMessage.style.zIndex = '9999';
+    errorMessage.textContent = 'Xatolik yuz berdi. Iltimos, sahifani yangilang.';
+    document.body.appendChild(errorMessage);
+    
+    setTimeout(() => {
+      errorMessage.remove();
+    }, 5000);
   }
 });
