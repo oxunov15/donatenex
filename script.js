@@ -288,4 +288,37 @@ document.addEventListener('DOMContentLoaded', () => {
       errorMessage.remove();
     }, 5000);
   }
-});
+  
+  /**
+ * Cookie boshqaruvi
+ */
+const setupCookieBanner = () => {
+  const cookieBanner = document.getElementById('cookie-banner');
+  const acceptCookies = document.getElementById('accept-cookies');
+  const declineCookies = document.getElementById('decline-cookies');
+  
+  // Cookie holatini tekshirish
+  const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+  
+  // Agar avval tanlov qilinmagan bo'lsa, banner ko'rsatiladi
+  if (cookiesAccepted === null) {
+    setTimeout(() => {
+      cookieBanner.classList.add('show');
+    }, 1000);
+  }
+  
+  // Cookie-larni qabul qilish
+  acceptCookies.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBanner.classList.remove('show');
+    // Tracking kodlarni ishga tushirish (agar mavjud bo'lsa)
+    console.log('Cookie-lar qabul qilindi');
+  });
+  
+  // Cookie-larni rad etish
+  declineCookies.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'false');
+    cookieBanner.classList.remove('show');
+    console.log('Cookie-lar rad etildi');
+  });
+};
