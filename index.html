@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Support Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="threejs-background"></div>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <img src="assets/logo.svg" alt="Creator Support Logo">
+                </a>
+                
+                <div class="language-selector">
+                    <button id="language-toggle" class="language-toggle" aria-label="Change language">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M2 12h20"></path>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </button>
+                    <div id="language-dropdown" class="language-dropdown">
+                        <ul>
+                            <li data-lang="uz">O'zbekcha</li>
+                            <li data-lang="en">English</li>
+                            <li data-lang="zh">中文</li>
+                            <li data-lang="hi">हिन्दी</li>
+                            <li data-lang="es">Español</li>
+                            <li data-lang="fr">Français</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title">Sevimli ijodkoringizni qo'llab-quvvatlang</h1>
+                <p id="hero-subtext">Ijodiy mahsulotlarni qadrlovchi hamjamiyatning bir qismi bo'ling. Har bir xayriya muhim.</p>
+                <button class="cta-button" id="donate-button">
+                    <span id="donate-button-text">Xayriya qilish</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/threejs-background.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
